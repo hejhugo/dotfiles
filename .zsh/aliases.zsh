@@ -1,16 +1,13 @@
 # Alias
 # ---
 #
-alias k="kubectl"
-
 # mac OS shortcuts
 alias code="open -a 'Visual Studio Code'"
 
-# ALIAS COMMANDS
-alias ls="exa --icons --group-directories-first"
-alias ll="exa --icons --group-directories-first -l"
-alias g="goto"
-alias grep='grep --color'
+# dotfiles
+alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
-alias cbp="code /home/xcad/obsidianvault/boilerplates"
-alias cpr="code /home/xcad/obsidianvault/projects"
+# my aliases
+alias k='kubectl'
+alias up='git-up'
+alias brewski='mas outdated; mas upgrade; omz update; brew update; brew upgrade; brew cleanup; brew doctor; brew cu'
