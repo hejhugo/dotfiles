@@ -1,0 +1,38 @@
+[user]
+	name = Christoph Hugo
+	email = christoph.hugo@omr.com
+[core]
+	excludesfile = /Users/christoph/.gitignore_global
+[credential]
+	helper = osxkeychain
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+[commit]
+	template = /Users/christoph/.stCommitMsg
+[init]
+	defaultBranch = main
+[color]
+  branch = auto
+  diff = auto
+  status = auto
+[push]
+	autoSetupRemote = true
+[alias]
+  st = status --short --branch
+  c = commit
+  b = branch
+  o = checkout
+  df = diff
+  lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative --no-merges
+  lgs = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative --no-merges --stat
+[filter "lfs"]
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+[credential "https://github.com"]
+	username = hejhugo
