@@ -1,0 +1,77 @@
+create_branch_from_issue() {
+    local issue_number="$1"
+
+    title=$(gh issue view "$issue_number" --json title -q '.title')
+    if [ $? -ne 0 ]; then
+        echo "Failed to get issue title"
+        return 1
+    fi
+
+    formatted_title=$(echo "$title" | sed 's/[^A-Za-z0-9]/_/g' | tr '[:upper:]' '[:lower:]')
+    if [ $? -ne 0 ]; then
+        echo "Failed to format issue title"
+        return 1
+    fi
+
+    branch_name="feat/$issue_number-$formatted_title"
+
+    git checkout -b "$branch_name"
+    if [ $? -ne 0 ]; then
+        echo "Failed to checkout new branch"
+        return 1
+    fi
+
+    return 0
+}
+
+create_pr_from_branch() {
+    # obtain current branch name
+    branch_name=$(git symbolic-ref --short -q HEAD)
+    if [ $? -ne 0 ]; then
+        echo "Failed to get current branch"
+        return 1
+    fi
+
+    # extract issue number from branch name
+    issue_number=$(echo $branch_name | cut -d'/' -f 2 | cut -d'-' -f 1)
+    if [ $? -ne 0 ]; then
+        echo "Failed to extract issue number from branch name"
+        return 1
+    fi
+
+    # get issue title and labels
+    issue_info=$(gh issue view "$issue_number" --json title,labels -q '{"title": .title, "labels": [.labels[].name]}')
+    if [ $? -ne 0 ]; then
+        echo "Failed to get issue info"
+        return 1
+    fi
+
+    # get issue title
+    title=$(echo $issue_info | jq -r '.title')
+
+    # check if issue has bug label
+    is_bug=$(echo $issue_info | jq -r '.labels[]?' | grep -c 'bug')
+
+    # set pr prefix based on whether issue is a bug or not
+    if [ $is_bug -gt 0 ]; then
+        pr_prefix="fix"
+    else
+        pr_prefix="feat"
+    fi
+
+    # format pr title
+    pr_title="$pr_prefix(#$issue_number): $title"
+
+    # Get the current working directory
+    current_directory=$(pwd)
+
+    # Now create PR using the --template option with absolute path
+    gh pr create --base master --head $branch_name --title "$pr_title" --template $current_directory/.github/PULL_REQUEST_TEMPLATE.md
+
+    if [ $? -ne 0 ]; then
+        echo "Failed to create pull request"
+        return 1
+    fi
+
+    return 0
+}
