@@ -1,0 +1,7 @@
+.DS_Store
+.vscode
+gcloud/*
+configstore/*
+iterm2/*
+.bash_history
+*.
