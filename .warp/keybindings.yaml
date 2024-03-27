@@ -1,0 +1,7 @@
+---
+"input:toggle_natural_language_command_search": cmd-o
+"pane_group:navigate_right": alt-shift-cmd-right
+"workspace:activate_prev_tab": alt-cmd-left
+"workspace:activate_next_tab": alt-cmd-right
+"pane_group:navigate_left": alt-shift-cmd-left
+"input:open_completion_suggestions": tab
