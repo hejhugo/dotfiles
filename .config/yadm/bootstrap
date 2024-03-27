@@ -1,0 +1,77 @@
+#!/bin/sh
+
+install_brew() {
+  # Proudly borrowed from:
+  # https://github.com/duckfullstop/dotfiles/blob/f734eea399a7ccd1c25b57242997e79f230abc4d/.config/yadm/bootstrap
+
+  # install Homebrew if it's missing
+  if ! command -v brew >/dev/null 2>&1; then
+    echo "Installing Homebrew"
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+  fi
+
+  if [ -f "$HOME/.Brewfile" ]; then
+    echo "Updating Homebrew bundle"
+    brew bundle --global
+  fi
+}
+
+configure_macos() {
+  # Disable the UI sound
+  defaults write com.apple.systemsound "com.apple.sound.uiaudio.enabled" -int 0
+  sudo launchctl unload /System/Library/LaunchDaemons/com.apple.audio.coreaudiod.plist
+  sudo launchctl load /System/Library/LaunchDaemons/com.apple.audio.coreaudiod.plist
+
+  # No app icons in the Dock
+  defaults delete com.apple.dock persistent-apps
+  defaults delete com.apple.dock persistent-others
+  killall Dock
+
+  # Save screenshots to the Screenshots folder
+  defaults write com.apple.screencapture location -string "${HOME}/Pictures/Screenshots"
+  killall SystemUIServer
+
+  # Set a really fast key repeat.
+  defaults write NSGlobalDomain KeyRepeat -int 1
+
+  # Run the screensaver if we're in the bottom-left hot corner.
+  defaults write com.apple.dock wvous-bl-corner -int 5
+  defaults write com.apple.dock wvous-bl-modifier -int 0
+
+  # Show hidden files in Finder
+  defaults write com.apple.finder AppleShowAllFiles -bool true
+  # Always open everything in Finder's list view. This is important.
+  defaults write com.apple.Finder FXPreferredViewStyle Nlsv
+  # Show Macintosh HD in Finder
+  defaults write com.apple.finder ShowHardDrivesOnDesktop -bool true
+  # Show External Disks in Finder
+  defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool true
+  # Show Removable Media in Finder
+  defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool true
+  # Show Connected Servers in Finder
+  defaults write com.apple.finder ShowMountedServersOnDesktop -bool true
+  # Show the full path in the Finder title bar
+  defaults write com.apple.finder _FXShowPosixPathInTitle -bool true
+  killall Finder
+}
+
+configure_zsh() {
+  # FIXME: We deserve better
+  source $HOME/.zshrc
+}
+
+configure_git() {
+  git config --global user.name "Christoph Hugo"
+  git config --global user.email "christoph.hugo@omr.com"
+  git config --global core.editor "cursor"
+
+
+system_type=$(uname -s)
+
+if [ "$system_type" = "Darwin" ]; then
+  configure_macos
+fi
+
+install_brew
+
+configure_zsh
