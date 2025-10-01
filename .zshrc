@@ -141,8 +141,8 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 
 [[ -f ~/.zsh/aliases.zsh ]] && source ~/.zsh/aliases.zsh
 
-# TODO: Install starship (brew install starship) and uncomment the line below
-# eval "$(starship init zsh)"
+# Starship prompt
+eval "$(starship init zsh)"
 
 eval "$(rbenv init - zsh)"
 
