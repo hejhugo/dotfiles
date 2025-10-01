@@ -5,3 +5,9 @@ configstore/*
 iterm2/*
 .bash_history
 *.
+
+# Security - never commit secrets
+secrets.zsh
+.env
+.env.*
+!.env.example
