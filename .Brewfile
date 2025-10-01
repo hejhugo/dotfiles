@@ -35,35 +35,43 @@ brew "z"
 # Development Tools
 cask "cursor"
 cask "docker"
+cask "docker-desktop"
 cask "gitkraken"
 cask "postman"
 cask "sourcetree"
+cask "sublime-text"
 cask "visual-studio-code"
 cask "warp"
 
 # Browsers
+cask "brave-browser"
 cask "firefox"
 cask "firefox-nightly"
 cask "google-chrome"
 cask "vivaldi"
 
 # Productivity
-cask "evernote"
 cask "1password"
 cask "1password-cli"
 cask "bartender"
 cask "cleanmymac"
 cask "deepl"
+cask "evernote"
 cask "focus"
+cask "gather"
 cask "languagetool"
+cask "languagetool-desktop"
 cask "linear-linear"
 cask "loom"
 cask "lunar"
 cask "miro"
 cask "notion"
+cask "rar"
 cask "raycast"
+cask "readdle-spark"
 cask "shottr"
 cask "todoist"
+cask "todoist-app"
 cask "xbar"
 cask "xnapper"
 
@@ -77,18 +85,22 @@ cask "zoom"
 # AI Tools
 cask "boltai"
 cask "chatgpt"
+cask "draw-things"
 cask "limitless"
 cask "lm-studio"
 cask "ollama"
+cask "ollama-app"
 
 # Cloud & Storage
 cask "cryptomator"
+cask "gcloud-cli"
 cask "google-cloud-sdk"
 cask "google-drive"
 
 # Media & Entertainment
 cask "audacity"
 cask "spotify"
+cask "steam"
 cask "vlc"
 
 # Utilities
@@ -99,7 +111,9 @@ cask "itsycal"
 cask "little-snitch"
 cask "logitune"
 cask "mullvad-vpn"
+cask "mullvadvpn"
 cask "raspberry-pi-imager"
+cask "teamviewer"
 cask "zettlr"
 
 # Fonts
