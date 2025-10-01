@@ -1,7 +1,5 @@
 tap "atlassian/acli"
 tap "buo/cask-upgrade"
-tap "homebrew/cask-fonts"
-tap "homebrew/cask-versions"
 
 # CLI Tools
 brew "bash-completion"
@@ -46,7 +44,7 @@ cask "warp"
 # Browsers
 cask "brave-browser"
 cask "firefox"
-cask "firefox-nightly"
+cask "firefox@nightly"
 cask "google-chrome"
 cask "vivaldi"
 
