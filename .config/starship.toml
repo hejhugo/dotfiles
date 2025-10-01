@@ -1,5 +1,5 @@
 # ~/.config/starship.toml
-# Based on Christian Lempa's configuration (simplified)
+# Compact two-line prompt configuration
 
 add_newline = false
 command_timeout = 1000

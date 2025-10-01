@@ -15,7 +15,7 @@
 - **Homebrew** package manager with bundle support
 - **1Password CLI** for secure secrets management
 - **Git configuration** with sensible defaults
-- **Starship prompt** (optional, ready to activate)
+- **Starship prompt** with compact two-line display
 
 ### 🎨 macOS Customizations
 - Fast key repeat for vim users
@@ -142,4 +142,5 @@ alias brewski  # Updates Homebrew, mas, oh-my-zsh, and reloads shell
 - The `secrets.zsh` file is ignored by git but sourced if it exists
 - First shell launch may be slow while plugins install
 - Some macOS settings require logout/restart to take effect
+- **Starship prompt** shows: directory → git branch → git status on a compact two-line layout
 - Customize freely - this is your environment!
