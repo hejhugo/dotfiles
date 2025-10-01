@@ -137,8 +137,58 @@ setopt INC_APPEND_HISTORY       # Write to history file immediately
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
 [[ -f ~/.zsh/aliases.zsh ]] && source ~/.zsh/aliases.zsh
 
+# TODO: Install starship (brew install starship) and uncomment the line below
 # eval "$(starship init zsh)"
 
 eval "$(rbenv init - zsh)"
+
+# fzf
+eval "$(fzf --zsh)"
+
+# windmill
+source <(wmill completions zsh)
+
+# Source custom functions
+[[ -f ~/.zsh/zsh_functions ]] && source ~/.zsh/zsh_functions
+
+# Source secrets securely
+[[ -f ~/.zsh/secrets.zsh ]] && source ~/.zsh/secrets.zsh
+
+export SSL_CERT_FILE="/opt/homebrew/etc/ca-certificates/cert.pem"
+
+# Use cat as pager
+export PAGER="cat"
+
+# nvm - lazy loaded for faster shell startup
+export NVM_DIR="$HOME/.nvm"
+nvm() {
+  unset -f nvm node npm npx
+  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+  nvm "$@"
+}
+node() {
+  unset -f nvm node npm npx
+  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+  node "$@"
+}
+npm() {
+  unset -f nvm node npm npx
+  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+  npm "$@"
+}
+npx() {
+  unset -f nvm node npm npx
+  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+  npx "$@"
+}
+
+# qlty
+export QLTY_INSTALL="$HOME/.qlty"
