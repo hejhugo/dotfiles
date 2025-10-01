@@ -13,7 +13,10 @@
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
-# eval "$(op completion zsh)"; compdef _op op
+# Initialize Homebrew early (needed for op and other commands)
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
+# 1Password CLI completion
 eval "$(op completion zsh)"
 
 export HOMEBREW_GITHUB_API_TOKEN="op://Personal/Github/Secrets/Homebrew"
@@ -136,8 +139,6 @@ setopt INC_APPEND_HISTORY       # Write to history file immediately
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-
-eval "$(/opt/homebrew/bin/brew shellenv)"
 
 [[ -f ~/.zsh/aliases.zsh ]] && source ~/.zsh/aliases.zsh
 
