@@ -93,11 +93,25 @@ plugins=(
   docker-compose
   docker
   gcloud
+  zsh-autosuggestions
+  zsh-syntax-highlighting
   )
 
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
+
+# History settings - extensive searchable history
+HISTSIZE=100000                 # Lines of history to keep in memory
+SAVEHIST=100000                 # Lines of history to save to file
+HISTFILE=~/.zsh_history
+setopt EXTENDED_HISTORY         # Save timestamp and duration
+setopt HIST_EXPIRE_DUPS_FIRST   # Expire duplicates first when trimming
+setopt HIST_IGNORE_DUPS         # Don't record duplicate consecutive entries
+setopt HIST_IGNORE_SPACE        # Don't record entries starting with space
+setopt HIST_VERIFY              # Show command with history expansion before running
+setopt SHARE_HISTORY            # Share history between sessions
+setopt INC_APPEND_HISTORY       # Write to history file immediately
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
