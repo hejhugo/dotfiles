@@ -1,15 +1,3 @@
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
-
-# TODOS:
-# * Add install script for oh-my-zsh, 1password-cli, starship, rbenv, etc.
-# * Add install script for GCloud SDK
-# * Add install script for VSCode extensions, settings, keybindings, snippets, themes
-# * Add install script for 1Password
-# * Add install script for iTerm2 settings
-# * Add install script for Alfred workflows
-
-
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
