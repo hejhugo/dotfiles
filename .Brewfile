@@ -1,9 +1,7 @@
+tap "atlassian/acli"
 tap "buo/cask-upgrade"
-tap "homebrew/bundle"
-tap "homebrew/cask"
-tap "homebrew/cask-versions"
 tap "homebrew/cask-fonts"
-tap "homebrew/core"
+tap "homebrew/cask-versions"
 
 # CLI Tools
 brew "bash-completion"
@@ -38,21 +36,16 @@ brew "z"
 cask "cursor"
 cask "docker"
 cask "gitkraken"
-cask "mysqlworkbench"
 cask "postman"
 cask "sourcetree"
-cask "tower"
 cask "visual-studio-code"
 cask "warp"
 
 # Browsers
-cask "brave-browser"
 cask "firefox"
 cask "firefox-nightly"
 cask "google-chrome"
-cask "librewolf"
 cask "vivaldi"
-cask "waterfox"
 
 # Productivity
 cask "evernote"
