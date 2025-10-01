@@ -64,7 +64,21 @@ configure_git() {
   git config --global user.name "Christoph Hugo"
   git config --global user.email "christoph.hugo@omr.com"
   git config --global core.editor "cursor"
+}
 
+install_zsh_plugins() {
+  echo "Installing Oh-My-Zsh plugins..."
+
+  # zsh-autosuggestions
+  if [ ! -d "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions" ]; then
+    git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+  fi
+
+  # zsh-syntax-highlighting
+  if [ ! -d "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting" ]; then
+    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+  fi
+}
 
 system_type=$(uname -s)
 
@@ -73,5 +87,9 @@ if [ "$system_type" = "Darwin" ]; then
 fi
 
 install_brew
+
+configure_git
+
+install_zsh_plugins
 
 configure_zsh

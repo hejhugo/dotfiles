@@ -2,36 +2,44 @@
 
 Full of dot goodness
 
-This dotfiles uses `yadm` stands for Yet Another Dotfiles Manager.
+This dotfiles uses **yadm** (Yet Another Dotfiles Manager) to manage dotfiles directly in `$HOME`.
 
 ## Installation
-Download setup script
+
+One-line install:
+```bash
+curl -fsSL https://raw.githubusercontent.com/hejhugo/dotfiles/main/setup.sh | bash
 ```
+
+Or manual:
+```bash
 curl -o setup.sh https://raw.githubusercontent.com/hejhugo/dotfiles/main/setup.sh
-```
-Grant access
-```
 chmod +x setup.sh
-```
-and execute it with
-```
 ./setup.sh
 ```
 
-## Required plugins
+The setup script will:
+1. Install Xcode Command Line Tools (if needed)
+2. Install Homebrew (if needed)
+3. Install yadm and clone this repo to `$HOME`
+4. Run bootstrap script (installs packages, configures macOS, installs zsh plugins)
 
-Install these Oh-My-Zsh plugins for the best experience:
+## What's Included
 
-```bash
-# zsh-autosuggestions (Fish-like suggestions)
-git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-
-# zsh-syntax-highlighting (Real-time command validation)
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
-```
+- **Shell**: Zsh with Oh-My-Zsh, enhanced plugins (autosuggestions, syntax-highlighting)
+- **History**: 100k searchable entries with timestamps
+- **Tools**: Homebrew bundle, Starship prompt, rbenv, 1Password CLI
+- **macOS**: Sensible defaults (fast key repeat, Finder tweaks, screenshot location)
 
 ## Secrets Management
 
-This configuration uses 1Password CLI for secrets. Never commit actual secrets to this repo.
+This configuration uses **1Password CLI** for secrets. Never commit actual secrets to this repo.
 
 For machine-specific secrets not in 1Password, create `~/.zsh/secrets.zsh` (already in .gitignore).
+
+## Updating
+
+```bash
+yadm pull
+yadm bootstrap  # Re-run bootstrap if needed
+```
