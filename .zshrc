@@ -16,9 +16,6 @@ export ZSH="$HOME/.oh-my-zsh"
 # Initialize Homebrew early (needed for op and other commands)
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
-# 1Password CLI completion
-eval "$(op completion zsh)"
-
 export HOMEBREW_GITHUB_API_TOKEN="op://Personal/Github/Secrets/Homebrew"
 
 # Set name of the theme to load --- if set to "random", it will
@@ -103,6 +100,9 @@ plugins=(
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
+
+# 1Password CLI completion (must be after oh-my-zsh loads compdef)
+eval "$(op completion zsh)"
 
 # History settings - extensive searchable history
 HISTSIZE=100000                 # Lines of history to keep in memory
